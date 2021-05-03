@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import List from './List';
 import React, { useState } from 'react'
@@ -7,23 +6,30 @@ import Data from './Data';
 
 function App() {
 
-  const datas = [
+  const [datas, setdatas] = useState([
     { name: "0번" },
     { name: "1번" },
     { name: "2번" }
+  ])
+
+  const additionalDatas = [
+    { name: "3번" },
+    { name: "3번" }
   ]
 
-  const [index, setIndex] = useState(0)
-
-  const handleClick = (index) => {
-    setIndex(index)
+  const handleClick = () => {
+    setdatas(datas.concat(additionalDatas))
   }
 
 
   return (
     <div className="App">
-      <List onClick={handleClick} />
-      <Data data={datas[index]} />
+      <button onClick={handleClick}>
+        추가데이터
+    </button>
+      {datas.map((value, index) => (
+        <Data data={datas[index]} />
+      ))}
     </div>
   );
 }
